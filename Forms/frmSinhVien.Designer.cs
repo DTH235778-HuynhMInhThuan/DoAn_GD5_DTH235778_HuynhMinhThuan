@@ -29,6 +29,7 @@
         private void InitializeComponent()
         {
             groupBox1 = new GroupBox();
+            btnXuatExcel = new Button();
             btnThoat = new Button();
             btnHuy = new Button();
             btnLuu = new Button();
@@ -45,7 +46,7 @@
             label2 = new Label();
             label1 = new Label();
             groupBox2 = new GroupBox();
-            dataGridView = new DataGridView();
+            dgvSinhVien = new DataGridView();
             colMaSv = new DataGridViewTextBoxColumn();
             colTenSV = new DataGridViewTextBoxColumn();
             colSDT = new DataGridViewTextBoxColumn();
@@ -53,11 +54,12 @@
             colQueQuan = new DataGridViewTextBoxColumn();
             groupBox1.SuspendLayout();
             groupBox2.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)dataGridView).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)dgvSinhVien).BeginInit();
             SuspendLayout();
             // 
             // groupBox1
             // 
+            groupBox1.Controls.Add(btnXuatExcel);
             groupBox1.Controls.Add(btnThoat);
             groupBox1.Controls.Add(btnHuy);
             groupBox1.Controls.Add(btnLuu);
@@ -80,6 +82,17 @@
             groupBox1.TabIndex = 0;
             groupBox1.TabStop = false;
             groupBox1.Text = "Thông Tin Sinh Viên";
+            // 
+            // btnXuatExcel
+            // 
+            btnXuatExcel.BackColor = Color.FromArgb(0, 192, 0);
+            btnXuatExcel.Location = new Point(749, 76);
+            btnXuatExcel.Name = "btnXuatExcel";
+            btnXuatExcel.Size = new Size(125, 36);
+            btnXuatExcel.TabIndex = 15;
+            btnXuatExcel.Text = "Xuất EXCEL";
+            btnXuatExcel.UseVisualStyleBackColor = false;
+            btnXuatExcel.Click += btnXuatExcel_Click;
             // 
             // btnThoat
             // 
@@ -119,7 +132,7 @@
             btnXoa.TabIndex = 11;
             btnXoa.Text = "Xóa ";
             btnXoa.UseVisualStyleBackColor = true;
-            btnXoa.Click += btnXoa_Click_1;
+            btnXoa.Click += btnXoa_Click;
             // 
             // btnThem
             // 
@@ -144,6 +157,7 @@
             txtCCCD.Name = "txtCCCD";
             txtCCCD.Size = new Size(125, 27);
             txtCCCD.TabIndex = 8;
+            txtCCCD.TextChanged += ChiNhapSo_TextChanged;
             // 
             // txtSDT
             // 
@@ -151,6 +165,7 @@
             txtSDT.Name = "txtSDT";
             txtSDT.Size = new Size(125, 27);
             txtSDT.TabIndex = 7;
+            txtSDT.TextChanged += ChiNhapSo_TextChanged;
             // 
             // txtTenSV
             // 
@@ -214,7 +229,7 @@
             // 
             // groupBox2
             // 
-            groupBox2.Controls.Add(dataGridView);
+            groupBox2.Controls.Add(dgvSinhVien);
             groupBox2.Dock = DockStyle.Fill;
             groupBox2.Location = new Point(0, 178);
             groupBox2.Name = "groupBox2";
@@ -223,21 +238,22 @@
             groupBox2.TabStop = false;
             groupBox2.Text = "Danh Sách Sinh Viên";
             // 
-            // dataGridView
+            // dgvSinhVien
             // 
-            dataGridView.AllowUserToAddRows = false;
-            dataGridView.AllowUserToDeleteRows = false;
-            dataGridView.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.Fill;
-            dataGridView.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            dataGridView.Columns.AddRange(new DataGridViewColumn[] { colMaSv, colTenSV, colSDT, colCCCD, colQueQuan });
-            dataGridView.Dock = DockStyle.Fill;
-            dataGridView.Location = new Point(3, 23);
-            dataGridView.Name = "dataGridView";
-            dataGridView.ReadOnly = true;
-            dataGridView.RowHeadersWidth = 51;
-            dataGridView.SelectionMode = DataGridViewSelectionMode.FullRowSelect;
-            dataGridView.Size = new Size(916, 282);
-            dataGridView.TabIndex = 0;
+            dgvSinhVien.AllowUserToAddRows = false;
+            dgvSinhVien.AllowUserToDeleteRows = false;
+            dgvSinhVien.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.Fill;
+            dgvSinhVien.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            dgvSinhVien.Columns.AddRange(new DataGridViewColumn[] { colMaSv, colTenSV, colSDT, colCCCD, colQueQuan });
+            dgvSinhVien.Dock = DockStyle.Fill;
+            dgvSinhVien.Location = new Point(3, 23);
+            dgvSinhVien.Name = "dgvSinhVien";
+            dgvSinhVien.ReadOnly = true;
+            dgvSinhVien.RowHeadersWidth = 51;
+            dgvSinhVien.SelectionMode = DataGridViewSelectionMode.FullRowSelect;
+            dgvSinhVien.Size = new Size(916, 282);
+            dgvSinhVien.TabIndex = 0;
+            dgvSinhVien.CellClick += dataGridView_CellClick;
             // 
             // colMaSv
             // 
@@ -288,12 +304,13 @@
             Controls.Add(groupBox2);
             Controls.Add(groupBox1);
             Name = "frmSinhVien";
+            StartPosition = FormStartPosition.CenterScreen;
             Text = "SinhVien";
             Load += SinhVien_Load;
             groupBox1.ResumeLayout(false);
             groupBox1.PerformLayout();
             groupBox2.ResumeLayout(false);
-            ((System.ComponentModel.ISupportInitialize)dataGridView).EndInit();
+            ((System.ComponentModel.ISupportInitialize)dgvSinhVien).EndInit();
             ResumeLayout(false);
         }
 
@@ -316,11 +333,12 @@
         private Button btnXoa;
         private Button btnThem;
         private GroupBox groupBox2;
-        private DataGridView dataGridView;
+        private DataGridView dgvSinhVien;
         private DataGridViewTextBoxColumn colMaSv;
         private DataGridViewTextBoxColumn colTenSV;
         private DataGridViewTextBoxColumn colSDT;
         private DataGridViewTextBoxColumn colCCCD;
         private DataGridViewTextBoxColumn colQueQuan;
+        private Button btnXuatExcel;
     }
 }

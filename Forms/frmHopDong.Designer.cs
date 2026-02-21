@@ -28,9 +28,9 @@
         /// </summary>
         private void InitializeComponent()
         {
-            DataGridViewCellStyle dataGridViewCellStyle1 = new DataGridViewCellStyle();
-            DataGridViewCellStyle dataGridViewCellStyle2 = new DataGridViewCellStyle();
-            DataGridViewCellStyle dataGridViewCellStyle3 = new DataGridViewCellStyle();
+            DataGridViewCellStyle dataGridViewCellStyle4 = new DataGridViewCellStyle();
+            DataGridViewCellStyle dataGridViewCellStyle5 = new DataGridViewCellStyle();
+            DataGridViewCellStyle dataGridViewCellStyle6 = new DataGridViewCellStyle();
             groupBox1 = new GroupBox();
             cboTrangThai = new ComboBox();
             label7 = new Label();
@@ -60,6 +60,7 @@
             colNgayKetThuc = new DataGridViewTextBoxColumn();
             colTienCoc = new DataGridViewTextBoxColumn();
             colTrangThai = new DataGridViewTextBoxColumn();
+            btnInHopDong = new Button();
             groupBox1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)nmTienCoc).BeginInit();
             groupBox2.SuspendLayout();
@@ -68,6 +69,7 @@
             // 
             // groupBox1
             // 
+            groupBox1.Controls.Add(btnInHopDong);
             groupBox1.Controls.Add(cboTrangThai);
             groupBox1.Controls.Add(label7);
             groupBox1.Controls.Add(dtpNgayKetThuc);
@@ -90,7 +92,7 @@
             groupBox1.Dock = DockStyle.Top;
             groupBox1.Location = new Point(0, 0);
             groupBox1.Name = "groupBox1";
-            groupBox1.Size = new Size(1017, 195);
+            groupBox1.Size = new Size(1059, 195);
             groupBox1.TabIndex = 0;
             groupBox1.TabStop = false;
             groupBox1.Text = "Thông Tin Hợp Đồng";
@@ -269,7 +271,7 @@
             groupBox2.Dock = DockStyle.Fill;
             groupBox2.Location = new Point(0, 195);
             groupBox2.Name = "groupBox2";
-            groupBox2.Size = new Size(1017, 269);
+            groupBox2.Size = new Size(1059, 318);
             groupBox2.TabIndex = 1;
             groupBox2.TabStop = false;
             groupBox2.Text = "Danh Sách Hợp Đồng";
@@ -287,7 +289,7 @@
             dgvHopDong.ReadOnly = true;
             dgvHopDong.RowHeadersWidth = 51;
             dgvHopDong.SelectionMode = DataGridViewSelectionMode.FullRowSelect;
-            dgvHopDong.Size = new Size(1011, 243);
+            dgvHopDong.Size = new Size(1053, 292);
             dgvHopDong.TabIndex = 1;
             dgvHopDong.CellClick += dgvHopDong_CellClick;
             // 
@@ -318,8 +320,8 @@
             // colNgayBatDau
             // 
             colNgayBatDau.DataPropertyName = "NgayBatDau";
-            dataGridViewCellStyle1.Format = "dd/MM/yyyy";
-            colNgayBatDau.DefaultCellStyle = dataGridViewCellStyle1;
+            dataGridViewCellStyle4.Format = "dd/MM/yyyy";
+            colNgayBatDau.DefaultCellStyle = dataGridViewCellStyle4;
             colNgayBatDau.HeaderText = "Ngày Bắt Đầu";
             colNgayBatDau.MinimumWidth = 6;
             colNgayBatDau.Name = "colNgayBatDau";
@@ -328,8 +330,8 @@
             // colNgayKetThuc
             // 
             colNgayKetThuc.DataPropertyName = "NgayKetThuc";
-            dataGridViewCellStyle2.Format = "dd/MM/yyyy";
-            colNgayKetThuc.DefaultCellStyle = dataGridViewCellStyle2;
+            dataGridViewCellStyle5.Format = "dd/MM/yyyy";
+            colNgayKetThuc.DefaultCellStyle = dataGridViewCellStyle5;
             colNgayKetThuc.HeaderText = "Ngày Kết Thúc";
             colNgayKetThuc.MinimumWidth = 6;
             colNgayKetThuc.Name = "colNgayKetThuc";
@@ -339,8 +341,8 @@
             // 
             colTienCoc.AutoSizeMode = DataGridViewAutoSizeColumnMode.Fill;
             colTienCoc.DataPropertyName = "TienCoc";
-            dataGridViewCellStyle3.Format = "N0";
-            colTienCoc.DefaultCellStyle = dataGridViewCellStyle3;
+            dataGridViewCellStyle6.Format = "N0";
+            colTienCoc.DefaultCellStyle = dataGridViewCellStyle6;
             colTienCoc.HeaderText = "Tiền Cọc ";
             colTienCoc.MinimumWidth = 6;
             colTienCoc.Name = "colTienCoc";
@@ -354,14 +356,25 @@
             colTrangThai.Name = "colTrangThai";
             colTrangThai.ReadOnly = true;
             // 
+            // btnInHopDong
+            // 
+            btnInHopDong.Location = new Point(886, 133);
+            btnInHopDong.Name = "btnInHopDong";
+            btnInHopDong.Size = new Size(124, 47);
+            btnInHopDong.TabIndex = 40;
+            btnInHopDong.Text = "IN HỢP ĐỒNG";
+            btnInHopDong.UseVisualStyleBackColor = true;
+            btnInHopDong.Click += btnInHopDong_Click;
+            // 
             // frmHopDong
             // 
             AutoScaleDimensions = new SizeF(8F, 20F);
             AutoScaleMode = AutoScaleMode.Font;
-            ClientSize = new Size(1017, 464);
+            ClientSize = new Size(1059, 513);
             Controls.Add(groupBox2);
             Controls.Add(groupBox1);
             Name = "frmHopDong";
+            StartPosition = FormStartPosition.CenterScreen;
             Text = "frmHopDong";
             Load += frmHopDong_Load;
             groupBox1.ResumeLayout(false);
@@ -403,5 +416,6 @@
         private DataGridViewTextBoxColumn colNgayKetThuc;
         private DataGridViewTextBoxColumn colTienCoc;
         private DataGridViewTextBoxColumn colTrangThai;
+        private Button btnInHopDong;
     }
 }

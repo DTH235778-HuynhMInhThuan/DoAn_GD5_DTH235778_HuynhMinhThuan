@@ -28,7 +28,8 @@ namespace QuanLyNhaTro.Forms
 
         private void frmPhong_Load(object sender, EventArgs e)
         {
-            // 1. Thêm dữ liệu cho ComboBox Trạng Thái
+            ThietKeUI.ApDungToanBo(this);
+
             cboTrangThai.Items.Clear();
             cboTrangThai.Items.Add("Trống");
             cboTrangThai.Items.Add("Đã thuê");
@@ -43,32 +44,66 @@ namespace QuanLyNhaTro.Forms
         }
         private void LoadData()
         {
-            // Lấy danh sách phòng từ DB
-            var listPhong = context.Phongs.Select(p => new
+            try
             {
-                p.MaPhong,
-                p.TenPhong,
-                p.GiaPhong,
-                p.SoNguoiToiDa,
-                p.TrangThai
-            }).ToList();
-            dgvPhong.AutoGenerateColumns = false;
+
+                //  TỰ ĐỘNG ĐỒNG BỘ TRẠNG THÁI PHÒNG VỚI BẢNG HỢP ĐỒNG
+
+                var danhSachPhong = context.Phongs.ToList();
+
+                foreach (var p in danhSachPhong)
+                {
+                    // Kiểm tra: Có cái hợp đồng nào của phòng này mà trạng thái đang là "Còn hạn" không?
+                    bool dangCoNguoiThu = context.HopDongs.Any(h => h.MaPhong == p.MaPhong && h.TrangThai == "Còn hạn");
+
+                    if (dangCoNguoiThu)
+                    {
+                        // Có người đang thuê thì chắc chắn phòng phải là "Đã thuê"
+                        p.TrangThai = "Đã thuê";
+                    }
+                    else if (p.TrangThai == "Đã thuê")
+                    {
+                        // Nếu không có ai thuê (hoặc hợp đồng đã Hết hạn/Đã hủy) mà trạng thái vẫn treo "Đã thuê"
+                        // thì trả nó về "Trống"
+                        p.TrangThai = "Trống";
+                    }
+                }
 
 
+                context.SaveChanges();
 
-            dgvPhong.DataSource = listPhong;
+                // BƯỚC 2: ĐỔ DỮ LIỆU LÊN BẢNG (Giữ nguyên logic cực bén của ní)
 
+                var listPhong = context.Phongs.Select(p => new
+                {
+                    p.MaPhong,
+                    p.TenPhong,
+                    p.GiaPhong,
+                    p.SoNguoiToiDa,
+                    p.TrangThai, // Trạng thái này lúc lấy lên đã là trạng thái chuẩn nhất (vừa được update ở Bước 1)
 
+                    // Code cũ của ní: Lấy mã hợp đồng mới nhất
+                    MaHopDong = p.HopDongs.OrderByDescending(h => h.MaHopDong).Select(h => h.MaHopDong).FirstOrDefault()
+                }).ToList();
+
+                dgvPhong.AutoGenerateColumns = false;
+                dgvPhong.DataSource = listPhong;
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("Lỗi khi tải hoặc đồng bộ dữ liệu phòng: " + ex.Message, "Thông báo lỗi", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
         }
         private void SetControlState(bool editing)
         {
-            // Bật/tắt các ô nhập liệu
             txtTenPhong.Enabled = editing;
             nmGiaPhong.Enabled = editing;
             nmSoNguoiToiDa.Enabled = editing;
             cboTrangThai.Enabled = editing;
 
-            // Bật/tắt các nút bấm
+            // ĐIỂM CHỐT LOGIC: Ô Hợp Đồng luôn luôn bị khóa (chỉ để xem)
+
+
             btnThem.Enabled = !editing;
             btnXoa.Enabled = !editing;
             btnLuu.Enabled = editing;
@@ -81,25 +116,9 @@ namespace QuanLyNhaTro.Forms
             nmGiaPhong.Value = 0;
             nmSoNguoiToiDa.Value = 0;
             cboTrangThai.SelectedIndex = 0;
+
         }
 
-        private void dgvPhong_CellContentClick(object sender, DataGridViewCellEventArgs e)
-        {
-            if (e.RowIndex >= 0)
-            {
-                DataGridViewRow row = dgvPhong.Rows[e.RowIndex];
-
-                txtMaPhong.Text = row.Cells["colMaPhong"].Value.ToString();
-                txtTenPhong.Text = row.Cells["colTenPhong"].Value.ToString();
-                nmGiaPhong.Value = Convert.ToDecimal(row.Cells["colGiaPhong"].Value);
-                nmSoNguoiToiDa.Value = Convert.ToDecimal(row.Cells["colSoNguoiToiDa"].Value);
-                cboTrangThai.Text = row.Cells["colTrangThai"].Value.ToString();
-
-                // Khi click vào bảng thì hiểu là đang muốn Sửa
-                isAdding = false;
-                SetControlState(true);
-            }
-        }
 
         private void btnThem_Click(object sender, EventArgs e)
         {
@@ -221,6 +240,11 @@ namespace QuanLyNhaTro.Forms
                 SetControlState(true);
                 btnXoa.Enabled = true;
             }
+        }
+
+        private void frmPhong_Activated(object sender, EventArgs e)
+        {
+            LoadData();
         }
     }
 }

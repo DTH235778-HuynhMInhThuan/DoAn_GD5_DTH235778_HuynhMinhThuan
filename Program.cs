@@ -1,4 +1,4 @@
-//using QuanLyNhaTro.Forms;
+﻿//using QuanLyNhaTro.Forms;
 
 using QuanLyNhaTro.Forms;
 
@@ -12,10 +12,16 @@ namespace QuanLyNhaTro
         [STAThread]
         static void Main()
         {
-            // To customize application configuration such as set high DPI settings or default font,
-            // see https://aka.ms/applicationconfiguration.
+            OfficeOpenXml.ExcelPackage.License.SetNonCommercialPersonal("Do An Ca Nhan");
+
+            // 2. Sau đó mới đến các lệnh khởi tạo hệ thống
             ApplicationConfiguration.Initialize();
-            Application.Run(new frmHoaDon());
+
+            // 3. Cuối cùng mới chạy Form
+            Application.Run(new frmDangNhap());
         }
     }
 }
+
+
+

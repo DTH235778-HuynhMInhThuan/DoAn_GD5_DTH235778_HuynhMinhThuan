@@ -14,7 +14,7 @@ using System.Reflection;
 [assembly: System.Reflection.AssemblyCompanyAttribute("QuanLyNhaTro")]
 [assembly: System.Reflection.AssemblyConfigurationAttribute("Debug")]
 [assembly: System.Reflection.AssemblyFileVersionAttribute("1.0.0.0")]
-[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+d22563bb944523556d6e902c2703b3a94b0c1b84")]
+[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+7e95c4ff6d34b6088a6f5eed6ca4641083ae2971")]
 [assembly: System.Reflection.AssemblyProductAttribute("QuanLyNhaTro")]
 [assembly: System.Reflection.AssemblyTitleAttribute("QuanLyNhaTro")]
 [assembly: System.Reflection.AssemblyVersionAttribute("1.0.0.0")]

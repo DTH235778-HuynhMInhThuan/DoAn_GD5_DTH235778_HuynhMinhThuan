@@ -34,6 +34,7 @@
         /// </summary>
         private void InitializeComponent()
         {
+            DataGridViewCellStyle dataGridViewCellStyle1 = new DataGridViewCellStyle();
             btnThoat = new Button();
             btnHuy = new Button();
             btnLuu = new Button();
@@ -142,7 +143,7 @@
             dgvPhong.ReadOnly = true;
             dgvPhong.RowHeadersWidth = 51;
             dgvPhong.SelectionMode = DataGridViewSelectionMode.FullRowSelect;
-            dgvPhong.Size = new Size(889, 299);
+            dgvPhong.Size = new Size(967, 299);
             dgvPhong.TabIndex = 0;
             dgvPhong.CellClick += dgvPhong_CellClick;
             // 
@@ -165,6 +166,8 @@
             // colGiaPhong
             // 
             colGiaPhong.DataPropertyName = "GiaPhong";
+            dataGridViewCellStyle1.Format = "N0";
+            colGiaPhong.DefaultCellStyle = dataGridViewCellStyle1;
             colGiaPhong.HeaderText = "Giá Phòng";
             colGiaPhong.MinimumWidth = 6;
             colGiaPhong.Name = "colGiaPhong";
@@ -180,7 +183,6 @@
             // 
             // colTrangThai
             // 
-            colTrangThai.AutoSizeMode = DataGridViewAutoSizeColumnMode.Fill;
             colTrangThai.DataPropertyName = "TrangThai";
             colTrangThai.HeaderText = "Trạng Thái";
             colTrangThai.MinimumWidth = 6;
@@ -193,7 +195,7 @@
             groupBox2.Dock = DockStyle.Fill;
             groupBox2.Location = new Point(0, 178);
             groupBox2.Name = "groupBox2";
-            groupBox2.Size = new Size(895, 325);
+            groupBox2.Size = new Size(973, 325);
             groupBox2.TabIndex = 3;
             groupBox2.TabStop = false;
             groupBox2.Text = "Danh Sách Phòng";
@@ -255,10 +257,10 @@
             groupBox1.Dock = DockStyle.Top;
             groupBox1.Location = new Point(0, 0);
             groupBox1.Name = "groupBox1";
-            groupBox1.Size = new Size(895, 178);
+            groupBox1.Size = new Size(973, 178);
             groupBox1.TabIndex = 2;
             groupBox1.TabStop = false;
-            groupBox1.Text = "Thông Tin Sinh Viên";
+            groupBox1.Text = "Thông Tin Phòng";
             // 
             // nmSoNguoiToiDa
             // 
@@ -296,11 +298,13 @@
             // 
             AutoScaleDimensions = new SizeF(8F, 20F);
             AutoScaleMode = AutoScaleMode.Font;
-            ClientSize = new Size(895, 503);
+            ClientSize = new Size(973, 503);
             Controls.Add(groupBox2);
             Controls.Add(groupBox1);
             Name = "frmPhong";
+            StartPosition = FormStartPosition.CenterScreen;
             Text = "frmPhong";
+            Activated += frmPhong_Activated;
             Load += frmPhong_Load;
             ((System.ComponentModel.ISupportInitialize)dgvPhong).EndInit();
             groupBox2.ResumeLayout(false);

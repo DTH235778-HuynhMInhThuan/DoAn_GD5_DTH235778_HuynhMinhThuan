@@ -35,6 +35,15 @@
             DataGridViewCellStyle dataGridViewCellStyle5 = new DataGridViewCellStyle();
             DataGridViewCellStyle dataGridViewCellStyle6 = new DataGridViewCellStyle();
             dgvHoaDon = new DataGridView();
+            colMaHD = new DataGridViewTextBoxColumn();
+            colTenPhong = new DataGridViewTextBoxColumn();
+            colTrangThai = new DataGridViewTextBoxColumn();
+            colThang = new DataGridViewTextBoxColumn();
+            colNam = new DataGridViewTextBoxColumn();
+            colTienPhong = new DataGridViewTextBoxColumn();
+            colTienDien = new DataGridViewTextBoxColumn();
+            colTienNuoc = new DataGridViewTextBoxColumn();
+            colTongTien = new DataGridViewTextBoxColumn();
             cboTrangThai = new ComboBox();
             label7 = new Label();
             label6 = new Label();
@@ -53,7 +62,7 @@
             label1 = new Label();
             groupBox2 = new GroupBox();
             groupBox1 = new GroupBox();
-            radioButton1 = new RadioButton();
+            btnInHoaDon = new Button();
             txtTongTien = new TextBox();
             txtTienNuoc = new TextBox();
             txtTienDien = new TextBox();
@@ -61,15 +70,6 @@
             label9 = new Label();
             label8 = new Label();
             nmNam = new NumericUpDown();
-            colMaHD = new DataGridViewTextBoxColumn();
-            colTenPhong = new DataGridViewTextBoxColumn();
-            colTrangThai = new DataGridViewTextBoxColumn();
-            colThang = new DataGridViewTextBoxColumn();
-            colNam = new DataGridViewTextBoxColumn();
-            colTienPhong = new DataGridViewTextBoxColumn();
-            colTienDien = new DataGridViewTextBoxColumn();
-            colTienNuoc = new DataGridViewTextBoxColumn();
-            colTongTien = new DataGridViewTextBoxColumn();
             ((System.ComponentModel.ISupportInitialize)dgvHoaDon).BeginInit();
             ((System.ComponentModel.ISupportInitialize)nmThang).BeginInit();
             groupBox2.SuspendLayout();
@@ -90,9 +90,99 @@
             dgvHoaDon.ReadOnly = true;
             dgvHoaDon.RowHeadersWidth = 51;
             dgvHoaDon.SelectionMode = DataGridViewSelectionMode.FullRowSelect;
-            dgvHoaDon.Size = new Size(1102, 234);
+            dgvHoaDon.Size = new Size(1102, 236);
             dgvHoaDon.TabIndex = 1;
             dgvHoaDon.CellClick += dgvHoaDon_CellClick;
+            dgvHoaDon.CellFormatting += dgvHoaDon_CellFormatting;
+            // 
+            // colMaHD
+            // 
+            colMaHD.DataPropertyName = "MaHoaDon";
+            colMaHD.HeaderText = "Mã Hóa Đơn";
+            colMaHD.MinimumWidth = 6;
+            colMaHD.Name = "colMaHD";
+            colMaHD.ReadOnly = true;
+            // 
+            // colTenPhong
+            // 
+            colTenPhong.DataPropertyName = "TenPhong";
+            colTenPhong.HeaderText = "Phòng";
+            colTenPhong.MinimumWidth = 6;
+            colTenPhong.Name = "colTenPhong";
+            colTenPhong.ReadOnly = true;
+            // 
+            // colTrangThai
+            // 
+            colTrangThai.DataPropertyName = "TrangThai";
+            colTrangThai.HeaderText = "Trạng Thái";
+            colTrangThai.MinimumWidth = 6;
+            colTrangThai.Name = "colTrangThai";
+            colTrangThai.ReadOnly = true;
+            // 
+            // colThang
+            // 
+            colThang.DataPropertyName = "Thang";
+            dataGridViewCellStyle1.Format = "dd/MM/yyyy";
+            colThang.DefaultCellStyle = dataGridViewCellStyle1;
+            colThang.HeaderText = "Tháng";
+            colThang.MinimumWidth = 6;
+            colThang.Name = "colThang";
+            colThang.ReadOnly = true;
+            // 
+            // colNam
+            // 
+            colNam.DataPropertyName = "Nam";
+            dataGridViewCellStyle2.Format = "dd/MM/yyyy";
+            colNam.DefaultCellStyle = dataGridViewCellStyle2;
+            colNam.HeaderText = "Năm";
+            colNam.MinimumWidth = 6;
+            colNam.Name = "colNam";
+            colNam.ReadOnly = true;
+            // 
+            // colTienPhong
+            // 
+            colTienPhong.AutoSizeMode = DataGridViewAutoSizeColumnMode.Fill;
+            colTienPhong.DataPropertyName = "TienPhong";
+            dataGridViewCellStyle3.Alignment = DataGridViewContentAlignment.MiddleRight;
+            dataGridViewCellStyle3.Format = "N0";
+            colTienPhong.DefaultCellStyle = dataGridViewCellStyle3;
+            colTienPhong.HeaderText = "Tiền Phòng";
+            colTienPhong.MinimumWidth = 6;
+            colTienPhong.Name = "colTienPhong";
+            colTienPhong.ReadOnly = true;
+            // 
+            // colTienDien
+            // 
+            colTienDien.DataPropertyName = "TienDien";
+            dataGridViewCellStyle4.Alignment = DataGridViewContentAlignment.MiddleRight;
+            dataGridViewCellStyle4.Format = "N0";
+            colTienDien.DefaultCellStyle = dataGridViewCellStyle4;
+            colTienDien.HeaderText = "Tiền Điện";
+            colTienDien.MinimumWidth = 6;
+            colTienDien.Name = "colTienDien";
+            colTienDien.ReadOnly = true;
+            // 
+            // colTienNuoc
+            // 
+            colTienNuoc.DataPropertyName = "TienNuoc";
+            dataGridViewCellStyle5.Alignment = DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle5.Format = "N0";
+            colTienNuoc.DefaultCellStyle = dataGridViewCellStyle5;
+            colTienNuoc.HeaderText = "Tiền Nước";
+            colTienNuoc.MinimumWidth = 6;
+            colTienNuoc.Name = "colTienNuoc";
+            colTienNuoc.ReadOnly = true;
+            // 
+            // colTongTien
+            // 
+            colTongTien.DataPropertyName = "TongTien";
+            dataGridViewCellStyle6.Alignment = DataGridViewContentAlignment.MiddleRight;
+            dataGridViewCellStyle6.Format = "N0";
+            colTongTien.DefaultCellStyle = dataGridViewCellStyle6;
+            colTongTien.HeaderText = "Tổng Tiền";
+            colTongTien.MinimumWidth = 6;
+            colTongTien.Name = "colTongTien";
+            colTongTien.ReadOnly = true;
             // 
             // cboTrangThai
             // 
@@ -247,16 +337,16 @@
             // 
             groupBox2.Controls.Add(dgvHoaDon);
             groupBox2.Dock = DockStyle.Fill;
-            groupBox2.Location = new Point(0, 195);
+            groupBox2.Location = new Point(0, 193);
             groupBox2.Name = "groupBox2";
-            groupBox2.Size = new Size(1108, 260);
+            groupBox2.Size = new Size(1108, 262);
             groupBox2.TabIndex = 3;
             groupBox2.TabStop = false;
             groupBox2.Text = "Danh Sách Hóa Đơn";
             // 
             // groupBox1
             // 
-            groupBox1.Controls.Add(radioButton1);
+            groupBox1.Controls.Add(btnInHoaDon);
             groupBox1.Controls.Add(txtTongTien);
             groupBox1.Controls.Add(txtTienNuoc);
             groupBox1.Controls.Add(txtTienDien);
@@ -283,21 +373,21 @@
             groupBox1.Dock = DockStyle.Top;
             groupBox1.Location = new Point(0, 0);
             groupBox1.Name = "groupBox1";
-            groupBox1.Size = new Size(1108, 195);
+            groupBox1.Size = new Size(1108, 193);
             groupBox1.TabIndex = 2;
             groupBox1.TabStop = false;
             groupBox1.Text = "Thông Tin Hóa Đơn";
+            groupBox1.Enter += groupBox1_Enter;
             // 
-            // radioButton1
+            // btnInHoaDon
             // 
-            radioButton1.AutoSize = true;
-            radioButton1.Location = new Point(972, 185);
-            radioButton1.Name = "radioButton1";
-            radioButton1.Size = new Size(117, 24);
-            radioButton1.TabIndex = 47;
-            radioButton1.TabStop = true;
-            radioButton1.Text = "radioButton1";
-            radioButton1.UseVisualStyleBackColor = true;
+            btnInHoaDon.Location = new Point(950, 59);
+            btnInHoaDon.Name = "btnInHoaDon";
+            btnInHoaDon.Size = new Size(94, 62);
+            btnInHoaDon.TabIndex = 47;
+            btnInHoaDon.Text = "In Hóa Đơn";
+            btnInHoaDon.UseVisualStyleBackColor = true;
+            btnInHoaDon.Click += btnInHoaDon_Click;
             // 
             // txtTongTien
             // 
@@ -357,95 +447,6 @@
             nmNam.TabIndex = 40;
             nmNam.Value = new decimal(new int[] { 2000, 0, 0, 0 });
             // 
-            // colMaHD
-            // 
-            colMaHD.DataPropertyName = "MaHD";
-            colMaHD.HeaderText = "Mã Hóa Đơn";
-            colMaHD.MinimumWidth = 6;
-            colMaHD.Name = "colMaHD";
-            colMaHD.ReadOnly = true;
-            // 
-            // colTenPhong
-            // 
-            colTenPhong.DataPropertyName = "TenPhong";
-            colTenPhong.HeaderText = "Phòng";
-            colTenPhong.MinimumWidth = 6;
-            colTenPhong.Name = "colTenPhong";
-            colTenPhong.ReadOnly = true;
-            // 
-            // colTrangThai
-            // 
-            colTrangThai.DataPropertyName = "TrangThai";
-            colTrangThai.HeaderText = "Trạng Thái";
-            colTrangThai.MinimumWidth = 6;
-            colTrangThai.Name = "colTrangThai";
-            colTrangThai.ReadOnly = true;
-            // 
-            // colThang
-            // 
-            colThang.DataPropertyName = "Thang";
-            dataGridViewCellStyle1.Format = "dd/MM/yyyy";
-            colThang.DefaultCellStyle = dataGridViewCellStyle1;
-            colThang.HeaderText = "Tháng";
-            colThang.MinimumWidth = 6;
-            colThang.Name = "colThang";
-            colThang.ReadOnly = true;
-            // 
-            // colNam
-            // 
-            colNam.DataPropertyName = "Nam";
-            dataGridViewCellStyle2.Format = "dd/MM/yyyy";
-            colNam.DefaultCellStyle = dataGridViewCellStyle2;
-            colNam.HeaderText = "Năm";
-            colNam.MinimumWidth = 6;
-            colNam.Name = "colNam";
-            colNam.ReadOnly = true;
-            // 
-            // colTienPhong
-            // 
-            colTienPhong.AutoSizeMode = DataGridViewAutoSizeColumnMode.Fill;
-            colTienPhong.DataPropertyName = "TienPhong";
-            dataGridViewCellStyle3.Alignment = DataGridViewContentAlignment.MiddleRight;
-            dataGridViewCellStyle3.Format = "N0";
-            colTienPhong.DefaultCellStyle = dataGridViewCellStyle3;
-            colTienPhong.HeaderText = "Tiền Phòng";
-            colTienPhong.MinimumWidth = 6;
-            colTienPhong.Name = "colTienPhong";
-            colTienPhong.ReadOnly = true;
-            // 
-            // colTienDien
-            // 
-            colTienDien.DataPropertyName = "TienDien";
-            dataGridViewCellStyle4.Alignment = DataGridViewContentAlignment.MiddleRight;
-            dataGridViewCellStyle4.Format = "N0";
-            colTienDien.DefaultCellStyle = dataGridViewCellStyle4;
-            colTienDien.HeaderText = "Tiền Điện";
-            colTienDien.MinimumWidth = 6;
-            colTienDien.Name = "colTienDien";
-            colTienDien.ReadOnly = true;
-            // 
-            // colTienNuoc
-            // 
-            colTienNuoc.DataPropertyName = "TienNuoc";
-            dataGridViewCellStyle5.Alignment = DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle5.Format = "N0";
-            colTienNuoc.DefaultCellStyle = dataGridViewCellStyle5;
-            colTienNuoc.HeaderText = "Tiền Nước";
-            colTienNuoc.MinimumWidth = 6;
-            colTienNuoc.Name = "colTienNuoc";
-            colTienNuoc.ReadOnly = true;
-            // 
-            // colTongTien
-            // 
-            colTongTien.DataPropertyName = "TongTien";
-            dataGridViewCellStyle6.Alignment = DataGridViewContentAlignment.MiddleRight;
-            dataGridViewCellStyle6.Format = "N0";
-            colTongTien.DefaultCellStyle = dataGridViewCellStyle6;
-            colTongTien.HeaderText = "Tổng Tiền";
-            colTongTien.MinimumWidth = 6;
-            colTongTien.Name = "colTongTien";
-            colTongTien.ReadOnly = true;
-            // 
             // frmHoaDon
             // 
             AutoScaleDimensions = new SizeF(8F, 20F);
@@ -454,6 +455,7 @@
             Controls.Add(groupBox2);
             Controls.Add(groupBox1);
             Name = "frmHoaDon";
+            StartPosition = FormStartPosition.CenterScreen;
             Text = "frmHoaDon";
             Load += frmHoaDon_Load;
             ((System.ComponentModel.ISupportInitialize)dgvHoaDon).EndInit();
@@ -493,7 +495,6 @@
         private TextBox txtTienNuoc;
         private TextBox txtTienDien;
         private TextBox txtTienPhong;
-        private RadioButton radioButton1;
         private DataGridViewTextBoxColumn colMaHD;
         private DataGridViewTextBoxColumn colTenPhong;
         private DataGridViewTextBoxColumn colTrangThai;
@@ -503,5 +504,6 @@
         private DataGridViewTextBoxColumn colTienDien;
         private DataGridViewTextBoxColumn colTienNuoc;
         private DataGridViewTextBoxColumn colTongTien;
+        private Button btnInHoaDon;
     }
 }
